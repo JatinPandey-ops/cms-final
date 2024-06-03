@@ -1,7 +1,8 @@
 <?php
 session_start();
 include 'db.php';
-
+$isInvalid = false;
+$noUser = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -20,10 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: dashboard.php');
             exit();
         } else {
-            echo "Invalid password.";
+            $isInvalid = true;
         }
     } else {
-        echo "No user found.";
+       $noUser = true;
     }
     $stmt->close();
 }
@@ -40,6 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <div class="login-box">
             <h3>Enter your account credentials</h3>
+            <?php
+            if($isInvalid == true) {
+                
+                echo "<h3 class='error'>Invalid Password</h3>";
+            }elseif($noUser == true) {
+                echo "<h3 class='error'>No user found!!</h3>";
+            }else {
+               echo "";
+            }
+            ?>
             <form method="post" action="login.php">
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
