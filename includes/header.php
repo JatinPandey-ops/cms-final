@@ -11,7 +11,6 @@
         <?php if ($_SESSION['role'] == 'admin'): ?>
             <li><a href="manage_lecturers.php">Manage Lecturers</a></li>
             <li><a href="register_classroom.php">Register Classroom</a></li>
-            <li><a href="manage_classroom.php">Manage Classroom</a></li>
             <li><a href="monitor_check_in_out.php">Monitor Check-in/Check-out</a></li>
             <li><a href="generate_report.php">Generate Report</a></li>
         <?php endif; ?>

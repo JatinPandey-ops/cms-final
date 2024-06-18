@@ -12,10 +12,8 @@ body {
 nav {
     background-color: #8C2A19;
     padding: 20px;
-    width: 90%;
     border-radius: 33px;
-    position: absolute;
-    top: 3px;
+    width: 100%;
 }
 
 ul {

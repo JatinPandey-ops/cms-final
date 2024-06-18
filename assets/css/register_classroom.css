@@ -6,25 +6,23 @@
 }
 
 body {
-    background-image: url("../img/login_bg.png");
-    background-size: cover;
-    background-position: center;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 .container {
     width: 80%;
-    margin: 20px auto;
+    margin: 8rem auto;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
+    background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin-top: 10rem;
+    text-align: center;
 }
 
-h1 {
+h1, h2 {
     margin-bottom: 20px;
-    text-align: center;
-    color: #8C2A19;
+    color: #ff5e5e;
 }
 
 .form {
@@ -41,44 +39,43 @@ h1 {
 }
 
 .form button {
-    background-color:#8C2A19;
+    background-color: #ff5e5e;
     color: white;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 30%;
-    margin : auto;
 }
 
 .form button:hover {
     background-color: #ff3b3b;
 }
 
-.lecturers-table {
+.classrooms-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-.lecturers-table th, .lecturers-table td {
+.classrooms-table th, .classrooms-table td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
 }
 
-.lecturers-table th {
-    background-color: #8C2A19;
+.classrooms-table th {
+    background-color: #ff5e5e;
     color: white;
 }
 
-.lecturers-table td a {
+.classrooms-table td a {
     color: #ff5e5e;
     text-decoration: none;
     transition: color 0.3s ease;
 }
-.lecturers-table td a:hover {
+
+.classrooms-table td a:hover {
     color: white;
     background-color: #ff3b3b;
     padding: 8px;
-}
 
+}
