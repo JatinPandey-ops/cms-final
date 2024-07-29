@@ -20,13 +20,19 @@ include 'includes/header.php';
 
             <h1>Dashboard</h1>
             <ul class="menu">
-                <li><a href="manage_lecturers.php" class="btn">Manage Lecturers</a></li>
-                <li><a href="register_classroom.php" class="btn">Register Classroom</a></li>
-                <!-- <li><a href="manage_classroom.php" class="btn">Manage Classroom</a></li> -->
-                <li><a href="view_classroom.php" class="btn">View Available Classroom</a></li>
-                <!-- <li><a href="check_in_out.php" class="btn">Record Check-in/Check-out</a></li> -->
-                <li><a href="monitor_check_in_out.php" class="btn">Monitor Check-in/Check-out</a></li>
-                <li><a href="generate_report.php" class="btn">Generate Report</a></li>
+                <?php if ($_SESSION['role'] == 'admin'): ?>
+                    <li><a href="manage_lecturers.php" class="btn">Manage Lecturers</a></li>
+                    <li><a href="register_classroom.php" class="btn">Register Classroom</a></li>
+                    <li><a href="view_classroom.php" class="btn">View Available Classroom</a></li>
+                    <li><a href="monitor_check_in_out.php" class="btn">Monitor Check-in/Check-out</a></li>
+                    <li><a href="generate_report.php" class="btn">Generate Report</a></li>
+                    
+                    <?php endif; ?>
+                    <?php if ($_SESSION['role'] == 'lecturer'): ?>
+                        <li><a href="view_classroom.php" class="btn">View Available Classroom</a></li>
+                
+                <?php endif; ?>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>
     </div>

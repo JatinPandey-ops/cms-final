@@ -13,7 +13,7 @@
                 <span></span>
                 <span></span>
             </div>
-            <h2>Classroom Management System</h2>
+            <h2 id="title">Classroom Management System</h2>
         </div>
         <div class="header-right">
             <p>BY: Sarmillah Somasundaram</p>
@@ -31,7 +31,6 @@
             <?php endif; ?>
             <?php if ($_SESSION['role'] == 'lecturer'): ?>
                 <li><a href="view_classroom.php">View Available Classroom</a></li>
-                <li><a href="check_in_out.php">Record Check-in/Check-out</a></li>
             <?php endif; ?>
             <li><a href="logout.php">Logout</a></li>
         </ul>

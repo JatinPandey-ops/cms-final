@@ -30,7 +30,9 @@ header {
 .header-right p {
     margin: 0;
 }
-
+#title {
+ color : #fff
+}
 nav {
     display: none; /* Hide navigation by default */
     background-color: #8C2A19;

@@ -6,14 +6,16 @@
     font-family: Arial, sans-serif;
 }
 
-/* Body style with background image and color */
+/* Body style with background color */
 body {
-    background-image: url("../img//login_bg.png"); /* Adjust path as necessary */
+    background-image: url("../img/login_bg.png");
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center;
 }
-
+form {
+    margin-bottom: 20px;
+    gap: 10px;
+}
 /* Container styling for centering and padding */
 .container {
     width: 80%;
@@ -31,6 +33,33 @@ h1, h2 {
     color: #ff5e5e;
 }
 
+/* Form styling */
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="time"], input[type="datetime-local"], select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #ff5e5e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff3b3b;
+}
+
 /* List styling for available classrooms */
 .classroom-list {
     list-style-type: none;
@@ -46,29 +75,15 @@ h1, h2 {
     text-align: left;
 }
 
-/* Form inside list styling */
-.classroom-list form {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+/* Success and error message styling */
+.success-msg {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.classroom-list form input, .classroom-list form select, .classroom-list form button {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.classroom-list form button {
-    background-color: #ff5e5e;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.classroom-list form button:hover {
-    background-color: #ff3b3b;
+.error-msg {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 20px;
 }

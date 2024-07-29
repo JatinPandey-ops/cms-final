@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="post" action="edit_lecturer.php?id=<?php echo htmlspecialchars($lecturer['lecturer_id']); ?>" class="form">
             <input type="hidden" name="lecturer_id" value="<?php echo htmlspecialchars($lecturer['lecturer_id']); ?>">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Name" value="<?php echo htmlspecialchars($lecturer['name']); ?>" required>
+            <input type="text" id="name" name="name" placeholder="Name" value="<?php echo htmlspecialchars($lecturer['NAME']); ?>" required>
             <label for="phone">Phone:</label>
             <input type="text" id="phone" name="phone" placeholder="Phone" value="<?php echo htmlspecialchars($lecturer['phone']); ?>" required>
             <label for="course_code">Course Code:</label>
@@ -86,9 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="course_name">Course Name:</label>
             <input type="text" id="course_name" name="course_name" placeholder="Course Name" value="<?php echo htmlspecialchars($lecturer['course_name']); ?>" required>
             <label for="date">Date:</label>
-            <input type="date" id="date" name="date" value="<?php echo htmlspecialchars($lecturer['date']); ?>">
+            <input type="date" id="date" name="date" value="<?php echo htmlspecialchars($lecturer['DATE']); ?>">
             <label for="time">Time:</label>
-            <input type="time" id="time" name="time" value="<?php echo htmlspecialchars($lecturer['time']); ?>">
+            <input type="time" id="time" name="time" value="<?php echo htmlspecialchars($lecturer['TIME']); ?>">
             <label for="note">Note:</label>
             <textarea id="note" name="note" placeholder="Note"><?php echo htmlspecialchars($lecturer['note']); ?></textarea>
             <label for="username">Username (Leave blank if not changing):</label>

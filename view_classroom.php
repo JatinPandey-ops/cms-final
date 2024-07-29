@@ -16,6 +16,7 @@ if (empty($_SESSION['form_token'])) {
 }
 $token = $_SESSION['form_token'];
 
+// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check the token
     if (!isset($_POST['token']) || $_POST['token'] !== $_SESSION['form_token']) {
@@ -63,6 +64,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
+// Handle search
+$search_query = "";
+if (isset($_GET['search'])) {
+    $search = $conn->real_escape_string($_GET['search']);
+    $search_query = "AND (name LIKE '%$search%' OR id LIKE '%$search%')";
+}
+
+// Fetch available classrooms
+$result = $conn->query("SELECT * FROM classrooms WHERE available = 1 $search_query");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,6 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container">
         <h1>View Available Classrooms</h1>
+        <form method="get" action="view_classroom.php">
+            <input type="text" name="search" placeholder="Search by Name or ID" value="<?php if (isset($search)) echo htmlspecialchars($search); ?>">
+            <button type="submit">Search</button>
+        </form>
         <?php if ($success): ?>
             <p class='success-msg'>Classroom assigned successfully</p>
         <?php endif; ?>
@@ -82,12 +97,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class='error-msg'>Error assigning classroom<?php if (isset($error_message)) echo ": " . htmlspecialchars($error_message); ?></p>
         <?php endif; ?>
         <?php
-        $result = $conn->query("SELECT * FROM classrooms WHERE available = 1");
         if ($result->num_rows > 0) {
             echo "<ul class='classroom-list'>";
             while($row = $result->fetch_assoc()) {
                 echo "<li><strong>" . htmlspecialchars($row['NAME']) . "</strong><br>Capacity: " . htmlspecialchars($row['capacity']) . "<br>Equipment: " . htmlspecialchars($row['equipment']);
-                echo "<form method='post' action='view_classroom.php'>
+                echo "<form method='post' action='view_classrooms.php'>
                         <input type='hidden' name='classroom_id' value='" . htmlspecialchars($row['id']) . "'>
                         <input type='hidden' name='token' value='$token'>
                         <label for='day'>Day:</label>
@@ -126,16 +140,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Display assigned classrooms
         if ($_SESSION['role'] == 'lecturer') {
-            $assigned_result = $conn->query("SELECT c.name, m.check_in_time, m.check_out_time, s.day, s.time FROM check_in_out m JOIN classrooms c ON m.classroom_id = c.id JOIN schedule s ON m.classroom_id = s.classroom_id WHERE m.lecturer_id = '" . $_SESSION['lecturer_id'] . "'");
-            if ($assigned_result->num_rows > 0) {
-                echo "<h2>My Assigned Classrooms</h2>";
-                echo "<ul class='classroom-list'>";
-                while($row = $assigned_result->fetch_assoc()) {
-                    echo "<li><strong>" . htmlspecialchars($row['name']) . "</strong><br>Day: " . htmlspecialchars($row['day']) . "<br>Time: " . htmlspecialchars($row['time']) . "<br>Check-in: " . htmlspecialchars($row['check_in_time']) . "<br>Check-out: " . htmlspecialchars($row['check_out_time']) . "</li>";
+            if (isset($_SESSION['lecturer_id'])) {
+                $assigned_result = $conn->query("SELECT c.name, m.check_in_time, m.check_out_time, s.day, s.time FROM check_in_out m JOIN classrooms c ON m.classroom_id = c.id JOIN schedule s ON m.classroom_id = s.classroom_id WHERE m.lecturer_id = '" . $_SESSION['lecturer_id'] . "'");
+                if ($assigned_result->num_rows > 0) {
+                    echo "<h2>My Assigned Classrooms</h2>";
+                    echo "<ul class='classroom-list'>";
+                    while($row = $assigned_result->fetch_assoc()) {
+                        echo "<li><strong>" . htmlspecialchars($row['name']) . "</strong><br>Day: " . htmlspecialchars($row['day']) . "<br>Time: " . htmlspecialchars($row['time']) . "<br>Check-in: " . htmlspecialchars($row['check_in_time']) . "<br>Check-out: " . htmlspecialchars($row['check_out_time']) . "</li>";
+                    }
+                    echo "</ul>";
+                } else {
+                    echo "<p>No assigned classrooms.</p>";
                 }
-                echo "</ul>";
             } else {
-                echo "<p>No assigned classrooms.</p>";
+                echo "<p>Lecturer ID is not set in the session.</p>";
             }
         }
         ?>
