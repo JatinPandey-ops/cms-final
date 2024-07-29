@@ -8,11 +8,10 @@
 
 /* Body style with background image and color */
 body {
-    background-image: url('../img/login_bg.png'); /* Adjust path as necessary */
+    background-image: url("../img//login_bg.png"); /* Adjust path as necessary */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    color: #333;
 }
 
 /* Container styling for centering and padding */
@@ -32,24 +31,37 @@ h1, h2 {
     color: #ff5e5e;
 }
 
-/* Form styling with flex layout for better structure */
-.form {
+/* List styling for available classrooms */
+.classroom-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.classroom-list li {
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: left;
+}
+
+/* Form inside list styling */
+.classroom-list form {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
-/* Input, select, textarea and button styling for better user interaction */
-.form input, .form select, .form textarea, .form button {
+.classroom-list form input, .classroom-list form select, .classroom-list form button {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 5px 0;
 }
 
-.form button {
+.classroom-list form button {
     background-color: #ff5e5e;
     color: white;
     border: none;
@@ -57,25 +69,6 @@ h1, h2 {
     transition: background-color 0.3s ease;
 }
 
-.form button:hover {
+.classroom-list form button:hover {
     background-color: #ff3b3b;
-}
-
-/* Table styling for consistent look */
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-}
-
-/* Table cell and header styling */
-table td, table th {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-table th {
-    background-color: #ff5e5e;
-    color: white;
 }

@@ -1,0 +1,22 @@
+/* Footer Styles */
+footer {
+    background-color: #8C2A19; 
+    color: white; 
+    padding: 20px 0;
+    width: 100%; 
+    text-align: center;
+    border-radius: 10px 10px 0 0; 
+}
+
+.footer-content p {
+    margin: 5px 0; 
+}
+
+.footer-content {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1000px;
+    margin: 0 auto; 
+    padding: 0 20px; 
+}

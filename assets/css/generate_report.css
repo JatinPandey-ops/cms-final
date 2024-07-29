@@ -6,12 +6,9 @@
     font-family: Arial, sans-serif;
 }
 
-/* Body style with background image and color */
+/* Body style with background color */
 body {
-    background-image: url('../img/login_bg.png'); /* Adjust path as necessary */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: #f9f9f9; 
     color: #333;
 }
 
@@ -32,44 +29,29 @@ h1, h2 {
     color: #ff5e5e;
 }
 
-/* Form styling with flex layout for better structure */
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-/* Input, select, textarea and button styling for better user interaction */
-.form input, .form select, .form textarea, .form button {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 5px 0;
-}
-
-.form button {
+/* Button styling */
+button {
     background-color: #ff5e5e;
     color: white;
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.form button:hover {
+button:hover {
     background-color: #ff3b3b;
 }
 
-/* Table styling for consistent look */
+/* Table styling */
 table {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
 }
 
-/* Table cell and header styling */
-table td, table th {
+table th, table td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
@@ -78,4 +60,12 @@ table td, table th {
 table th {
     background-color: #ff5e5e;
     color: white;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #fff;
 }
