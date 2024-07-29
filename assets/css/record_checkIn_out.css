@@ -8,22 +8,16 @@
 
 /* Body style with background color */
 body {
-    background-image: url("../img/login_bg.png");
+    background-image: url('../img/login_bg.png'); /* Adjust path as necessary */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    color: #333;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* Container styling for centering and padding */
 .container {
-    width: 100%;
-    max-width: 400px;
-    margin: 100px auto;
+    width: 80%;
+    margin: 8rem auto;
     padding: 20px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,24 +25,36 @@ body {
     text-align: center;
 }
 
-/* Login box styling */
-.login-box {
-    padding: 20px;
-}
-
 /* Heading style */
-h3 {
+h1 {
     margin-bottom: 20px;
     color: #ff5e5e;
 }
 
-/* Input field styling */
-input[type="text"], input[type="password"] {
+/* Table styling */
+table {
     width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table th, table td {
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    text-align: left;
+}
+
+table th {
+    background-color: #ff5e5e;
+    color: white;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #fff;
 }
 
 /* Button styling */
@@ -60,13 +66,21 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin: 5px;
 }
 
 button:hover {
     background-color: #ff3b3b;
 }
 
-/* Error message styling */
+/* Success and error message styling */
+.success-msg {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
 .error-msg {
     color: red;
     font-weight: bold;
