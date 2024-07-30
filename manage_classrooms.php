@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $equipment = $conn->real_escape_string($_POST['equipment'] ?? '');
             $available = $conn->real_escape_string($_POST['available'] ?? '');
 
-            if ($classroom_id && $lecturer_id && $scheduled_time && $check_in_time && $check_out_time && $day && $capacity && $equipment && $available) {
+            if ($classroom_id && $lecturer_id && $scheduled_time && $check_in_time && $check_out_time && $day && $capacity && $equipment !== '' && $available !== '') {
                 // Check for time conflicts
                 $conflict_sql = "SELECT * FROM schedule WHERE classroom_id='$classroom_id' AND day='$day' AND (
                                     ('$check_in_time' < check_out_time AND '$check_out_time' > check_in_time) OR
