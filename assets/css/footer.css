@@ -1,11 +1,12 @@
 /* Footer Styles */
 footer {
-    background-color: #8C2A19; 
-    color: white; 
+    background-color: #8C2A19;
+    color: white;
     padding: 20px 0;
-    width: 100%; 
+    width: 100%;
     text-align: center;
-    border-radius: 10px 10px 0 0; 
+    border-radius: 10px 10px 0 0;
+    position: revert-layer ;
 }
 
 .footer-content p {

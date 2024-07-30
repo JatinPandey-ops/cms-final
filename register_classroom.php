@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($row['id']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['NAME']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['capacity']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['equipment']) . "</td>";
                 echo "<td>" . ($row['available'] ? 'Available' : 'Not Available') . "</td>";

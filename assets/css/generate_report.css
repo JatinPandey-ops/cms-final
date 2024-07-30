@@ -6,11 +6,12 @@
     font-family: Arial, sans-serif;
 }
 
-/* Body style with background color */
+/* Body style with background image and color */
 body {
     background-image: url("../img/login_bg.png");
-    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* Container styling for centering and padding */
@@ -22,27 +23,26 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: center;
+    overflow: auto;
 }
 
 /* Heading style */
-h1, h2 {
+h1 {
     margin-bottom: 20px;
     color: #ff5e5e;
 }
 
-/* Button styling */
-button {
-    background-color: #ff5e5e;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Success and error messages */
+.success-msg {
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-button:hover {
-    background-color: #ff3b3b;
+.error-msg {
+    color: #dc3545;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 /* Table styling */
@@ -52,7 +52,7 @@ table {
     border-collapse: collapse;
 }
 
-table th, table td {
+table td, table th {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
@@ -63,10 +63,52 @@ table th {
     color: white;
 }
 
-table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-table tbody tr:nth-child(even) {
-    background-color: #fff;
+/* Button styling with hover effect */
+button {
+    padding: 10px 20px;
+    background-color: #ff5e5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px 0;
 }
+
+button:hover {
+    background-color: #ff3b3b;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+form input[type="text"],
+form input[type="datetime-local"],
+form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    align-self: flex-start;
+}
+
+/* Label styling */
+label {
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    margin-top: 10px;
+}
+
+

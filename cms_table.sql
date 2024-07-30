@@ -24,7 +24,7 @@ CREATE TABLE lecturers (
 
 -- Create classrooms table
 CREATE TABLE classrooms (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(10) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     capacity INT NOT NULL,
     equipment TEXT,
@@ -35,9 +35,11 @@ CREATE TABLE classrooms (
 CREATE TABLE schedule (
     id INT AUTO_INCREMENT PRIMARY KEY,
     lecturer_id CHAR(4),
-    classroom_id INT,
+    classroom_id VARCHAR(10),
     day ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'),
-    time TIME,
+    scheduled_time TIME,
+    check_in_time DATETIME,
+    check_out_time DATETIME,
     FOREIGN KEY (lecturer_id) REFERENCES lecturers(lecturer_id),
     FOREIGN KEY (classroom_id) REFERENCES classrooms(id)
 );
@@ -46,22 +48,11 @@ CREATE TABLE schedule (
 CREATE TABLE check_in_out (
     id INT AUTO_INCREMENT PRIMARY KEY,
     lecturer_id CHAR(4),
-    classroom_id INT,
+    classroom_id VARCHAR(10),
     check_in_time DATETIME,
     check_out_time DATETIME,
     FOREIGN KEY (lecturer_id) REFERENCES lecturers(lecturer_id),
     FOREIGN KEY (classroom_id) REFERENCES classrooms(id)
-);
-
--- Create lecturer_classrooms table for tracking classroom assignments
-CREATE TABLE lecturer_classrooms (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    lecturer_id CHAR(4) NOT NULL,
-    classroom_id INT NOT NULL,
-    check_in_out_id INT NOT NULL,
-    FOREIGN KEY (lecturer_id) REFERENCES lecturers(lecturer_id),
-    FOREIGN KEY (classroom_id) REFERENCES classrooms(id),
-    FOREIGN KEY (check_in_out_id) REFERENCES check_in_out(id)
 );
 
 -- Create logs view for monitoring check-in/out times

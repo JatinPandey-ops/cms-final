@@ -47,11 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Fetch assigned classrooms
-$sql = "SELECT c.id, c.name, s.day, s.time 
-        FROM classrooms c
-        JOIN schedule s ON c.id = s.classroom_id
-        WHERE s.lecturer_id = '$lecturer_id'";
+// Fetch assigned classrooms and lecturer details
+$sql = "SELECT l.lecturer_id, l.name as lecturer_name, l.course_code, l.course_name, c.id as classroom_id, c.name as classroom_name, s.day, s.scheduled_time, s.check_in_time as scheduled_check_in_time, s.check_out_time as scheduled_check_out_time 
+        FROM lecturers l
+        JOIN schedule s ON l.lecturer_id = s.lecturer_id
+        JOIN classrooms c ON s.classroom_id = c.id
+        WHERE l.lecturer_id = '$lecturer_id'";
 $result = $conn->query($sql);
 
 // Fetch check-in and check-out times
@@ -71,7 +72,8 @@ while ($row = $check_in_out_result->fetch_assoc()) {
     <link rel="stylesheet" href="assets/css/record_checkIn_out.css">
     <script>
         function recordAction(action, classroom_id) {
-            var timestamp = prompt("Please enter the " + action.replace('_', ' ') + " time (YYYY-MM-DD HH:MM:SS):");
+            var now = new Date().toISOString().slice(0, 16);
+            var timestamp = prompt("Please enter the " + action.replace('_', ' ') + " time (YYYY-MM-DD HH:MM:SS):", now);
             if (timestamp != null && timestamp != "") {
                 document.getElementById('action').value = action;
                 document.getElementById('classroom_id').value = classroom_id;
@@ -97,23 +99,25 @@ while ($row = $check_in_out_result->fetch_assoc()) {
                     <tr>
                         <th>Classroom</th>
                         <th>Day</th>
-                        <th>Time</th>
-                        <th>Check-in Time</th>
-                        <th>Check-out Time</th>
+                        <th>Scheduled Check-in Time</th>
+                        <th>Scheduled Check-out Time</th>
+                        <th>Actual Check-in Time</th>
+                        <th>Actual Check-out Time</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row['name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['classroom_name']); ?></td>
                             <td><?php echo htmlspecialchars($row['day']); ?></td>
-                            <td><?php echo htmlspecialchars($row['time']); ?></td>
-                            <td><?php echo isset($check_in_out_times[$row['id']]['check_in_time']) ? htmlspecialchars($check_in_out_times[$row['id']]['check_in_time']) : 'N/A'; ?></td>
-                            <td><?php echo isset($check_in_out_times[$row['id']]['check_out_time']) ? htmlspecialchars($check_in_out_times[$row['id']]['check_out_time']) : 'N/A'; ?></td>
+                            <td><?php echo htmlspecialchars($row['scheduled_check_in_time']); ?></td>
+                            <td><?php echo htmlspecialchars($row['scheduled_check_out_time']); ?></td>
+                            <td><?php echo isset($check_in_out_times[$row['classroom_id']]['check_in_time']) ? htmlspecialchars($check_in_out_times[$row['classroom_id']]['check_in_time']) : 'N/A'; ?></td>
+                            <td><?php echo isset($check_in_out_times[$row['classroom_id']]['check_out_time']) ? htmlspecialchars($check_in_out_times[$row['classroom_id']]['check_out_time']) : 'N/A'; ?></td>
                             <td>
-                                <button onclick="recordAction('check_in', '<?php echo htmlspecialchars($row['id']); ?>')">Check In</button>
-                                <button onclick="recordAction('check_out', '<?php echo htmlspecialchars($row['id']); ?>')">Check Out</button>
+                                <button onclick="recordAction('check_in', '<?php echo htmlspecialchars($row['classroom_id']); ?>')">Check In</button>
+                                <button onclick="recordAction('check_out', '<?php echo htmlspecialchars($row['classroom_id']); ?>')">Check Out</button>
                             </td>
                         </tr>
                     <?php endwhile; ?>

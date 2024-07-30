@@ -23,6 +23,7 @@ include 'includes/header.php';
                 <?php if ($_SESSION['role'] == 'admin'): ?>
                     <li><a href="manage_lecturers.php" class="btn">Manage Lecturers</a></li>
                     <li><a href="register_classroom.php" class="btn">Register Classroom</a></li>
+                    <li><a href="manage_classrooms.php" class="btn">Manage Classroom</a></li>
                     <li><a href="view_classroom.php" class="btn">View Available Classroom</a></li>
                     <li><a href="monitor_check_in_out.php" class="btn">Monitor Check-in/Check-out</a></li>
                     <li><a href="generate_report.php" class="btn">Generate Report</a></li>

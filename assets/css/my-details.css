@@ -8,10 +8,11 @@
 
 /* Body style with background color */
 body {
-    background-image: url('../img/login_bg.png'); /* Adjust path as necessary */
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url("../img/login_bg.png");
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 /* Container styling for centering and padding */
